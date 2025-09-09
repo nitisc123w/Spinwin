@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love</title>
+    <!---------------  CSS  --------------------->
+    <link rel="stylesheet" href="styl.css">
+    <!---------------  Font Aewsome  --------------------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!---------------  Chart JS  --------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!---------------  Chart JS Plugin  --------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script> 
+    <style  type="text/css">
+      /*-----------------  GOOGLE FONTS  -----------------*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+
+/*-----------------  VARIABLES  -----------------*/
+:root {
+    /* Colors */ 
+    --white_color : rgb(255, 255, 255);
+    --gold_color: rgb(255, 215, 0);
+    --green_color: rgb(45, 252, 26);
+    --body_background: linear-gradient(to right, #141e30, #243b55);
+    --spin_background: linear-gradient(to right, #fc4a1a, #f7b733);
+}
+/*-----------------  Base  -----------------*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'PT Serif', serif;
+   
+}
+body {
+  height: 100vh;
+  background: var(--body_background);
+}
+/*-----------------  Styling Start  -----------------*/
+h1 {
+  position: absolute;
+  font-size: 2rem;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold_color);
+}
+.container {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  max-width: 78.37rem;
+  margin-top: 2rem;
+  max-height: 90vh;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-image: linear-gradient(35deg,red,white,green, blue);
+  box-shadow: 3px 5px 5px 5px rgba(0 , 0 , 0, 0.2);
+  border-radius: 1rem;
+}
+.wheel_box {
+  position: relative;
+  width: 350;
+  height: 100%;
+}
+#spinWheel {
+  max-height: inherit;
+  width: inherit;
+  transform: rotate(250deg);
+  margin-top: 40px;
+
+}
+
+.fa-solid {
+  position: absolute;
+  top: -6%;
+  left: 43.7%;
+  font-size: 4rem;
+  color: var(--green_color);
+  transform: rotate(-225deg);
+}
+#text {
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
+  color: var(--gold_color);
+  border-radius: 8px;
+  color: #243b55;
+  background-image: linear-gradient(red,white,yellow);
+  font-weight: 500;
+  padding: 5px 0;
+}
+#spin_btn {
+padding: 5px;
+background-image:linear-gradient(red,green , blue , white) ;
+border-radius: 8px;
+margin-top: 20px;
+inset: 5px;
+box-shadow: 2px 5px 3px 5px rgba(0 , 0 , 0, 0.2);
+ 
+}
+
+img{
+  height: 150px;
+  width: 100px;
+  border-radius: 8px;
+}
+#spin_bthn{
+  transform:translateX(-180px);
+  padding: 5px  20px;
+}
+@media screen and (max-width: 768px) {
+  .container{ 
+    padding: 20px;
+    width: 90%;
+  }
+  
+}
+    </style>
+</head>
+<body>
+
+  <h1>JACKPOT</h1>
+  <div class="container">
+  <div id="text" ><p>Wheel Of Fortune</p></div>
+     <div class="wheel_box">
+      <canvas id="spinWheel"></canvas>
+     
+      <i class="fa-solid fa-location-arrow arrow"></i>
+     </div>
+     <button id="spin_btn">
+          <img src="./Item.jpg" alt="">
+    </button>
+    <div style="margin-top: 10px; color: wheat; font-size: 14px;"><i>Click on image for check your luck!</i></div>
+
+   
+  </div>
+  
+  <!---------------  SCRIPT  --------------------->
+  <script>
+    /* --------------- Spin Wheel  --------------------- */
+const spinWheel = document.getElementById("spinWheel");
+const spinBtn = document.getElementById("spin_btn");
+const text = document.getElementById("text");
+/* --------------- Minimum And Maximum Angle For A value  --------------------- */
+// window.location.reload(true)
+const spinValues = [
+ 
+  { minDegree: 0, maxDegree: 36, value: "Nitish" },
+  { minDegree: 37, maxDegree: 108, value: "Sunil" },
+  { minDegree: 109, maxDegree: 180, value: "Prashant" },
+  { minDegree: 181, maxDegree: 252, value: "Nishant" },
+  { minDegree: 253, maxDegree: 324, value: "Nikhil"},
+  { minDegree: 325, maxDegree: 360, value: "Nitish" },
+  
+
+
+];
+/* --------------- Size Of Each Piece  --------------------- */
+const size = [1,1,1,1,1];
+/* --------------- Background Colors  --------------------- */
+var spinColors = [
+  "#E74C3C",
+  "#7D3C98",
+  "#2E86C1",
+  "#138D75",
+  "#138D75",
+
+  
+];
+/* --------------- Chart --------------------- */
+/* --------------- Guide : https://chartjs-plugin-datalabels.netlify.app/guide/getting-started.html --------------------- */
+let spinChart = new Chart(spinWheel, {
+  plugins: [ChartDataLabels],
+  type: "pie",
+  data: {
+    labels: ["Sunil","Nitish","Nikhil","Nishant","Prashant"],
+    datasets: [
+      {
+        backgroundColor: spinColors,
+        data: size,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    animation: { duration: 0 },
+    plugins: {
+      tooltip: false,
+      legend: {
+        display: false,
+      },
+      datalabels: {
+        rotation: 90,
+        color: "#ffffff",
+        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+        font: { size: 24 },
+      },
+    },
+  },
+});
+/* --------------- Display Value Based On The Angle --------------------- */
+const generateValue = (angleValue) => {
+  for (let i of spinValues) {
+    if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
+      if(i.value=="Sunil"){
+              text.innerHTML="Sorry! &#128514;Mr. Sunil Better luck next time"
+      }
+      else{
+        
+      
+      text.innerHTML = `<p>Congratulations, Mr.${i.value} ,Your love are too much ! ${i.value.slice(0,1)}&#x2665;N </p>`;
+      }
+      spinBtn.disabled = false;
+      break;
+    }
+  }
+};
+/* --------------- Spinning Code --------------------- */
+let count = 0;
+let resultValue = 101;
+spinBtn.addEventListener("click", () => {
+  text.innerHTML = `<p>Best Of Luck!</p>`;
+  spinBtn.disabled = true;
+  let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+  console.log(randomDegree,"lkl")
+
+  let rotationInterval = window.setInterval(() => {
+    spinChart.options.rotation = spinChart.options.rotation + resultValue;
+    // console.log( spinChart.options.rotation,"mmm")
+    spinChart.update();
+    if (spinChart.options.rotation >= 360) {
+      count += 1;
+      resultValue -=5;
+      spinChart.options.rotation = 0;
+    } else if (count > 15 && spinChart.options.rotation == randomDegree) {
+      clearInterval(rotationInterval);
+      generateValue(randomDegree);
+      count = 0;
+      resultValue = 101;
+    }
+  }, 10);
+});
+/* --------------- End Spin Wheel  --------------------- */
+
+/* --------------- Display Value Based On The Angle --------------------- */
+
+
+  </script>  
+</body>   
+</html>
