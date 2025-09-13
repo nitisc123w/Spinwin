@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love</title>
-    <!---------------  CSS  --------------------->
-    <link rel="stylesheet" href="styl.css">
-    <!---------------  Font Aewsome  --------------------->
+    <title>Love - Wheel of Fortune</title>
+    <!---------------  Font Awesome  --------------------->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,248 +13,314 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <!---------------  Chart JS Plugin  --------------------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script> 
-    <style  type="text/css">
-      /*-----------------  GOOGLE FONTS  -----------------*/
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+    <style type="text/css">
+        /*-----------------  GOOGLE FONTS  -----------------*/
+        @import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
 
-/*-----------------  VARIABLES  -----------------*/
-:root {
-    /* Colors */ 
-    --white_color : rgb(255, 255, 255);
-    --gold_color: rgb(255, 215, 0);
-    --green_color: rgb(45, 252, 26);
-    --body_background: linear-gradient(to right, #141e30, #243b55);
-    --spin_background: linear-gradient(to right, #fc4a1a, #f7b733);
-}
-/*-----------------  Base  -----------------*/
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'PT Serif', serif;
-   
-}
-body {
-  height: 100vh;
-  background: var(--body_background);
-}
-/*-----------------  Styling Start  -----------------*/
-h1 {
-  position: absolute;
-  font-size: 2rem;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--gold_color);
-}
-.container {
-  display: flex;
-  padding: 20px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 450px;
-  max-width: 78.37rem;
-  margin-top: 2rem;
-  max-height: 90vh;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  background-image: linear-gradient(35deg,red,white,green, blue);
-  box-shadow: 3px 5px 5px 5px rgba(0 , 0 , 0, 0.2);
-  border-radius: 1rem;
-}
-.wheel_box {
-  position: relative;
-  width: 350;
-  height: 100%;
-}
-#spinWheel {
-  max-height: inherit;
-  width: inherit;
-  transform: rotate(250deg);
-  margin-top: 40px;
-
-}
-
-.fa-solid {
-  position: absolute;
-  top: -6%;
-  left: 43.7%;
-  font-size: 4rem;
-  color: var(--green_color);
-  transform: rotate(-225deg);
-}
-#text {
-  font-size: 1rem;
-  text-align: center;
-  width: 100%;
-  margin-bottom: 40px;
-  color: var(--gold_color);
-  border-radius: 8px;
-  color: #243b55;
-  background-image: linear-gradient(red,white,yellow);
-  font-weight: 500;
-  padding: 5px 0;
-}
-#spin_btn {
-padding: 5px;
-background-image:linear-gradient(red,green , blue , white) ;
-border-radius: 8px;
-margin-top: 20px;
-inset: 5px;
-box-shadow: 2px 5px 3px 5px rgba(0 , 0 , 0, 0.2);
- 
-}
-
-img{
-  height: 150px;
-  width: 100px;
-  border-radius: 8px;
-}
-#spin_bthn{
-  transform:translateX(-180px);
-  padding: 5px  20px;
-}
-@media screen and (max-width: 768px) {
-  .container{ 
-    padding: 20px;
-    width: 90%;
-  }
-  
-}
+        /*-----------------  VARIABLES  -----------------*/
+        :root {
+            /* Colors */ 
+            --white_color: rgb(255, 255, 255);
+            --gold_color: rgb(255, 215, 0);
+            --green_color: rgb(45, 252, 26);
+            --body_background: linear-gradient(to right, #141e30, #243b55);
+            --spin_background: linear-gradient(to right, #fc4a1a, #f7b733);
+        }
+        
+        /*-----------------  Base  -----------------*/
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: 'PT Serif', serif;
+        }
+        
+        body {
+            height: 100vh;
+            background: var(--body_background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        /*-----------------  Styling Start  -----------------*/
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold_color);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .container {
+            display: flex;
+            padding: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            max-width: 500px;
+            background-image: linear-gradient(35deg, red, white, green, blue);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            position: relative;
+        }
+        
+        .wheel_box {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        #spinWheel {
+            width: 300px;
+            height: 300px;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+        
+        .fa-solid {
+            position: absolute;
+            top: -20px;
+            font-size: 3rem;
+            color: var(--green_color);
+            z-index: 10;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+        }
+        
+        #text {
+            font-size: 1.2rem;
+            text-align: center;
+            width: 100%;
+            margin: 15px 0;
+            color: #243b55;
+            background-image: linear-gradient(to right, red, white, yellow);
+            font-weight: 600;
+            padding: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        #spin_btn {
+            padding: 0;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        #spin_btn:hover {
+            transform: scale(1.05);
+        }
+        
+        #spin_btn:active {
+            transform: scale(0.95);
+        }
+        
+        img {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            border: 3px solid gold;
+        }
+        
+        .instruction {
+            margin-top: 10px;
+            color: wheat;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            #spinWheel {
+                width: 250px;
+                height: 250px;
+            }
+            
+            img {
+                height: 100px;
+                width: 100px;
+            }
+            
+            #text {
+                font-size: 1rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            #spinWheel {
+                width: 200px;
+                height: 200px;
+            }
+            
+            img {
+                height: 80px;
+                width: 80px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <h1>JACKPOT WHEEL</h1>
+    <div class="container">
+        <div id="text"><p>Wheel Of Fortune</p></div>
+        <div class="wheel_box">
+            <canvas id="spinWheel"></canvas>
+            <i class="fa-solid fa-caret-down arrow"></i>
+        </div>
+        <button id="spin_btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/7020/7020543.png" alt="Spin wheel">
+        </button>
+        <div class="instruction"><i>Click on image to test your luck!</i></div>
+    </div>
 
-  <h1>JACKPOT</h1>
-  <div class="container">
-  <div id="text" ><p>Wheel Of Fortune</p></div>
-     <div class="wheel_box">
-      <canvas id="spinWheel"></canvas>
-     
-      <i class="fa-solid fa-location-arrow arrow"></i>
-     </div>
-     <button id="spin_btn">
-          <img src="./Item.jpg.png" alt="">
-    </button>
-    <div style="margin-top: 10px; color: wheat; font-size: 14px;"><i>Click on image for check your luck!</i></div>
-
-   
-  </div>
-  
-  <!---------------  SCRIPT  --------------------->
-  <script>
-    /* --------------- Spin Wheel  --------------------- */
-const spinWheel = document.getElementById("spinWheel");
-const spinBtn = document.getElementById("spin_btn");
-const text = document.getElementById("text");
-/* --------------- Minimum And Maximum Angle For A value  --------------------- */
-// window.location.reload(true)
-const spinValues = [
- 
-  { minDegree: 0, maxDegree: 72, value: "Nitish" },
-  { minDegree: 73, maxDegree: 144, value: "Sunil" },
-  { minDegree: 145, maxDegree: 216, value: "Prashant" },
-  { minDegree: 217, maxDegree: 288, value: "Nishant" },
-  { minDegree: 289, maxDegree: 360, value: "Nikhil"},
-  
-
-
-];
-/* --------------- Size Of Each Piece  --------------------- */
-const size = [1,1,1,1,1];
-/* --------------- Background Colors  --------------------- */
-var spinColors = [
-  "#E74C3C",
-  "#7D3C98",
-  "#2E86C1",
-  "#138D75",
-  "#138D75"
-
-  
-];
-/* --------------- Chart --------------------- */
-/* --------------- Guide : https://chartjs-plugin-datalabels.netlify.app/guide/getting-started.html --------------------- */
-let spinChart = new Chart(spinWheel, {
-  plugins: [ChartDataLabels],
-  type: "pie",
-  data: {
-    labels: ["Nitish","Sunil","Prashant","Nishant","Nikhil"],
-    datasets: [
-      {
-        backgroundColor: spinColors,
-        data: size,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    animation: { duration: 0 },
-    plugins: {
-      tooltip: false,
-      legend: {
-        display: false,
-      },
-      datalabels: {
-        rotation: 90,
-        color: "#ffffff",
-        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-        font: { size: 24 },
-      },
-    },
-  },
-});
-/* --------------- Display Value Based On The Angle --------------------- */
-const generateValue = (angleValue) => {
-  for (let i of spinValues) {
-    if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-
-      
-      text.innerHTML = `<p>Congratulations, Mr.${i.value} ,Your love are too much ! ${i.value.slice(0,1)}&#x2665;N </p>`;
-      
-      spinBtn.disabled = false;
-      break;
-    }
-  }
-};
-/* --------------- Spinning Code --------------------- */
-let count = 0;
-let resultValue = 72;
-spinBtn.addEventListener("click", () => {
-  text.innerHTML = `<p>Best Of Luck!</p>`;
-  spinBtn.disabled = true;
-  let randomDegree = Math.floor(Math.random() * (359 - 0 + 1) + 0);
-  console.log(randomDegree,"lkl")
-
-  let rotationInterval = window.setInterval(() => {
-    spinChart.options.rotation = spinChart.options.rotation + resultValue;
-    // console.log( spinChart.options.rotation,"mmm")
-    spinChart.update();
-    if (spinChart.options.rotation >= 360) {
-      count += 1;
-      resultValue -=5;
-      spinChart.options.rotation = 0;
-    } else if (count > 15 && spinChart.options.rotation == randomDegree) {
-      clearInterval(rotationInterval);
-      generateValue(randomDegree);
-      count = 0;
-      resultValue = 101;
-    }
-  }, 10);
-});
-/* --------------- End Spin Wheel  --------------------- */
-
-/* --------------- Display Value Based On The Angle --------------------- */
-
-
-  </script>  
+    <script>
+        // Initialize Chart.js plugin
+        Chart.register(ChartDataLabels);
+        
+        /* --------------- Spin Wheel --------------------- */
+        const spinWheel = document.getElementById("spinWheel");
+        const spinBtn = document.getElementById("spin_btn");
+        const text = document.getElementById("text");
+        
+        // Set canvas size
+        spinWheel.width = 300;
+        spinWheel.height = 300;
+        
+        /* --------------- Minimum And Maximum Angle For A Value --------------------- */
+        const spinValues = [
+            { minDegree: 0, maxDegree: 72, value: "Nitish" },
+            { minDegree: 73, maxDegree: 144, value: "Sunil" },
+            { minDegree: 145, maxDegree: 216, value: "Prashant" },
+            { minDegree: 217, maxDegree: 288, value: "Nishant" },
+            { minDegree: 289, maxDegree: 360, value: "Nikhil" }
+        ];
+        
+        /* --------------- Size Of Each Piece --------------------- */
+        const size = [1, 1, 1, 1, 1];
+        
+        /* --------------- Background Colors --------------------- */
+        const spinColors = [
+            "#E74C3C",
+            "#7D3C98",
+            "#2E86C1",
+            "#138D75",
+            "#F39C12"
+        ];
+        
+        /* --------------- Chart --------------------- */
+        let spinChart = new Chart(spinWheel, {
+            plugins: [ChartDataLabels],
+            type: "pie",
+            data: {
+                labels: ["Nitish", "Sunil", "Prashant", "Nishant", "Nikhil"],
+                datasets: [
+                    {
+                        backgroundColor: spinColors,
+                        data: size,
+                        borderWidth: 0
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                animation: { duration: 0 },
+                plugins: {
+                    tooltip: false,
+                    legend: {
+                        display: false,
+                    },
+                    datalabels: {
+                        rotation: 90,
+                        color: "#ffffff",
+                        formatter: (_, context) => context.chart.data.labels[context.dataIndex],
+                        font: { size: 16, weight: 'bold' },
+                        textAlign: 'center'
+                    },
+                },
+                layout: {
+                    padding: 10
+                }
+            },
+        });
+        
+        // Set initial rotation to 0
+        spinChart.options.rotation = 0;
+        spinChart.update();
+        
+        /* --------------- Display Value Based On The Angle --------------------- */
+        const generateValue = (angleValue) => {
+            for (let i of spinValues) {
+                if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
+                    text.innerHTML = `<p>Congratulations, Mr. ${i.value}! Your love is too much! ${i.value.slice(0,1)}&#x2665;N </p>`;
+                    spinBtn.disabled = false;
+                    break;
+                }
+            }
+        };
+        
+        /* --------------- Spinning Code --------------------- */
+        let isSpinning = false;
+        
+        spinBtn.addEventListener("click", () => {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinBtn.disabled = true;
+            text.innerHTML = `<p>Best Of Luck!</p>`;
+            
+            let randomDegree = Math.floor(Math.random() * 360);
+            let rotation = 0;
+            let totalRotation = 360 * 5 + randomDegree; // 5 full rotations plus random degree
+            let duration = 5000; // 5 seconds
+            let startTime = null;
+            
+            function animate(currentTime) {
+                if (!startTime) startTime = currentTime;
+                let elapsed = currentTime - startTime;
+                let progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function for smooth deceleration
+                let easeOut = function(t) { 
+                    return 1 - Math.pow(1 - t, 3); 
+                };
+                
+                let easedProgress = easeOut(progress);
+                rotation = easedProgress * totalRotation;
+                
+                spinChart.options.rotation = rotation % 360;
+                spinChart.update();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    // Animation complete
+                    let finalRotation = rotation % 360;
+                    generateValue(finalRotation);
+                    isSpinning = false;
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        });
+    </script>  
 </body>   
-
 </html>
-
-
-
-
-
