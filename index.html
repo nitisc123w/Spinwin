@@ -213,14 +213,10 @@ let spinChart = new Chart(spinWheel, {
 const generateValue = (angleValue) => {
   for (let i of spinValues) {
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-      if(i.value=="Sunil"){
-              text.innerHTML="Sorry! &#128514;Mr. Sunil Better luck next time"
-      }
-      else{
-        
+
       
       text.innerHTML = `<p>Congratulations, Mr.${i.value} ,Your love are too much ! ${i.value.slice(0,1)}&#x2665;N </p>`;
-      }
+      
       spinBtn.disabled = false;
       break;
     }
@@ -260,3 +256,4 @@ spinBtn.addEventListener("click", () => {
 </body>   
 
 </html>
+
