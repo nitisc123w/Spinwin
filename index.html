@@ -156,12 +156,11 @@ const text = document.getElementById("text");
 // window.location.reload(true)
 const spinValues = [
  
-  { minDegree: 0, maxDegree: 60, value: "Nitish" },
-  { minDegree: 61, maxDegree: 120, value: "Sunil" },
-  { minDegree: 120, maxDegree: 180, value: "Prashant" },
-  { minDegree: 181, maxDegree: 240, value: "Nishant" },
-  { minDegree: 241, maxDegree: 300, value: "Nikhil"},
-  { minDegree: 301, maxDegree: 360, value: "Nitish" },
+  { minDegree: 0, maxDegree: 72, value: "Nitish" },
+  { minDegree: 73, maxDegree: 144, value: "Sunil" },
+  { minDegree: 145, maxDegree: 216, value: "Prashant" },
+  { minDegree: 217, maxDegree: 288, value: "Nishant" },
+  { minDegree: 289, maxDegree: 360, value: "Nikhil"},
   
 
 
@@ -174,7 +173,7 @@ var spinColors = [
   "#7D3C98",
   "#2E86C1",
   "#138D75",
-  "#138D75",
+  "#138D75"
 
   
 ];
@@ -184,7 +183,7 @@ let spinChart = new Chart(spinWheel, {
   plugins: [ChartDataLabels],
   type: "pie",
   data: {
-    labels: ["Sunil","Nitish","Nikhil","Nishant","Prashant"],
+    labels: ["Nitish","Sunil","Prashant","Nishant","Nikhil"],
     datasets: [
       {
         backgroundColor: spinColors,
@@ -256,6 +255,7 @@ spinBtn.addEventListener("click", () => {
 </body>   
 
 </html>
+
 
 
 
